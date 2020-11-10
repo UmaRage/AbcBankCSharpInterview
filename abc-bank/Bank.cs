@@ -54,5 +54,22 @@ namespace abc_bank
                 return "Error";
             }
         }
+
+        public Customer FindCustomer(string name)
+        {
+            try
+            {
+                var customer = customers.Where(x => x.GetName() == name).FirstOrDefault();
+                if (customer == null)
+                    throw new Exception("Account not found!");
+
+                return customer;
+            }
+            catch (Exception e)
+            {
+                Console.Write(e.StackTrace);
+                throw;
+            }
+        }
     }
 }
